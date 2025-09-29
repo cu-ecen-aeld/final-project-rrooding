@@ -1,0 +1,5 @@
+menu "External packages"
+	source "../packages/package/opensprinkler-pi/Config.in"
+endmenu
+
+

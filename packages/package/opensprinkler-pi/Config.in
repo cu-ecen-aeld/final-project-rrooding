@@ -1,0 +1,15 @@
+config BR2_PACKAGE_OPENSPRINKLER_PI
+    bool "opensprinkler-pi"
+    select BR2_PACKAGE_MOSQUITTO
+    select BR2_PACKAGE_LIBGPIOD
+    select BR2_PACKAGE_I2C_TOOLS
+    help
+	  OpenSprinkler Unified Firmware for Linux/OSPi (Raspberry Pi).
+
+	  This package fetches the upstream firmware sources and installs the
+	  runtime artifacts for OpenSprinkler Pi.
+
+	  Project home: https://www.opensprinkler.com/
+	  Sources: https://github.com/OpenSprinkler/OpenSprinkler-Firmware.git
+
+

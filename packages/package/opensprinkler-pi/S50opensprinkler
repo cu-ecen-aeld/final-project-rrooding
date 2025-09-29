@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# OpenSprinkler startup script
+#
+
+DAEMON="opensprinkler"
+DAEMON_BIN="/usr/bin/opensprinkler"
+DAEMON_ARGS=""
+PIDFILE="/var/run/opensprinkler.pid"
+
+start() {
+    printf "Starting $DAEMON: "
+    start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $DAEMON_BIN -- $DAEMON_ARGS
+    echo "done"
+}
+
+stop() {
+    printf "Stopping $DAEMON: "
+    start-stop-daemon --stop --quiet --pidfile $PIDFILE
+    echo "done"
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
