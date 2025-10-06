@@ -1,0 +1,37 @@
+#!/bin/sh
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/bin/OpenSprinkler
+NAME=ospi
+DESC="OpenSprinkler"
+PIDFILE=/var/run/$NAME.pid
+CWD=/usr/local/OpenSprinkler
+
+test -x $DAEMON || exit 0
+
+set -e
+
+case "$1" in
+  start)
+    echo "Starting $DESC"
+    start-stop-daemon --start --quiet --pidfile $PIDFILE \
+        --exec $DAEMON --background --make-pidfile --chdir $CWD
+    ;;
+  stop)
+    echo "Stopping $DESC"
+    start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
+    rm -f $PIDFILE
+    ;;
+  restart|force-reload)
+    echo "Restarting $DESC"
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  *)
+    echo "Usage: $NAME {start|stop|restart|force-reload}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
