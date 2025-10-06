@@ -1,0 +1,17 @@
+config BR2_PACKAGE_OSPI
+	bool "ospi"
+    depends on BR2_PACKAGE_LIBGPIOD
+    depends on BR2_PACKAGE_MOSQUITTO
+    depends on BR2_PACKAGE_LIBOPENSSL
+    depends on BR2_PACKAGE_I2C_TOOLS
+	help
+	  Includes Opensprinkler Pi
+
+comment "ospi needs libgpiod"
+    depends on !BR2_PACKAGE_LIBGPIOD
+comment "ospi needs mosquitto"
+    depends on !BR2_PACKAGE_MOSQUITTO
+comment "ospi needs i2c-tools"
+    depends on !BR2_PACKAGE_I2C_TOOLS
+comment "ospi needs openssl"
+    depends on !BR2_PACKAGE_LIBOPENSSL
