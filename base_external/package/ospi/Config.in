@@ -4,6 +4,7 @@ config BR2_PACKAGE_OSPI
     depends on BR2_PACKAGE_MOSQUITTO
     depends on BR2_PACKAGE_LIBOPENSSL
     depends on BR2_PACKAGE_I2C_TOOLS
+    select BR2_PACKAGE_USBMOUNT
 	help
 	  Includes Opensprinkler Pi
 

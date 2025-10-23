@@ -1,0 +1,10 @@
+# udev rules for OpenSprinkler USB configuration support
+# This rule triggers the configuration loader when a USB storage device is added
+
+# Trigger configuration check when USB storage device is added
+ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", \
+    RUN+="/usr/local/bin/ospi-usb-config.sh load"
+
+# Log USB device removal
+ACTION=="remove", SUBSYSTEMS=="usb", SUBSYSTEM=="block", \
+    RUN+="/bin/sh -c 'echo USB device removed at $(date) >> /var/log/ospi-usb-config.log'"
